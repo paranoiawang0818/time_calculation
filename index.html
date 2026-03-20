@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>时间差计算器 - 专供数学不太好的同学</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 300px;
+        }
+        h2 { color: #333; margin-bottom: 20px; font-size: 1.2rem;}
+        .input-group { margin-bottom: 15px; text-align: left; }
+        label { display: block; margin-bottom: 5px; color: #666; font-size: 0.9rem;}
+        input[type="time"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box; /* 别问我为什么要加这个，这是常识 */
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+        button:hover { background-color: #0056b3; }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #d9534f;
+            min-height: 1.2em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>⏰ 持续时间计算器</h2>
+    
+    <div class="input-group">
+        <label for="startTime">开始时间 (Start):</label>
+        <input type="time" id="startTime" required>
+    </div>
+
+    <div class="input-group">
+        <label for="endTime">结束时间 (End):</label>
+        <input type="time" id="endTime" required>
+    </div>
+
+    <button onclick="calculateDuration()">计算时长</button>
+
+    <div id="result"></div>
+</div>
+
+<script>
+    function calculateDuration() {
+        const startVal = document.getElementById('startTime').value;
+        const endVal = document.getElementById('endTime').value;
+        const resultDiv = document.getElementById('result');
+
+        // 基本判空，免得你输个空值让程序报错
+        if (!startVal || !endVal) {
+            resultDiv.innerHTML = "👀 你倒是把时间填完整啊！";
+            return;
+        }
+
+        // 转换逻辑：把 "HH:mm" 字符串拆解成纯分钟数
+        // 既然你要申CS，split和map这种基本操作我就不解释了
+        const [startH, startM] = startVal.split(':').map(Number);
+        const [endH, endM] = endVal.split(':').map(Number);
+
+        // 全部转换为当天的分钟数 (min from midnight)
+        const startTotalMins = startH * 60 + startM;
+        const endTotalMins = endH * 60 + endM;
+
+        let diffMins = endTotalMins - startTotalMins;
+
+        // 核心数学逻辑：处理跨夜情况
+        // 如果 结束时间 < 开始时间，说明跨到了第二天
+        // 比如 Start 23:00, End 01:00.  Diff = -22小时
+        // 此时需要 +24小时 (1440分钟)
+        if (diffMins < 0) {
+            diffMins += 1440; 
+        }
+
+        // 转换回 小时:分钟 格式
+        const hours = Math.floor(diffMins / 60);
+        const minutes = diffMins % 60;
+
+        // 只有 0 分钟的情况？
+        if (diffMins === 0) {
+             resultDiv.innerHTML = `持续时间: 0 分钟 (或者整整 24 小时？)`;
+        } else {
+             resultDiv.innerHTML = `持续时间: ${hours} 小时 ${minutes} 分钟`;
+        }
+    }
+</script>
+
+</body>
+</html>
