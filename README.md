@@ -1,41 +1,41 @@
-# ⏰ 时间计算器
+# ⏰ Time Calculator
 
-一个简单实用的时间计算器。  
-输入开始时间和结束时间，自动计算并输出两者之间的时长。  
+A simple and practical time calculator.
+Enter a start time and an end time to automatically calculate and display the duration between them.
 
-## ✨ 功能介绍
+## ✨ Features
 
-- 输入 **开始时间**
-- 输入 **结束时间**
-- 自动计算时间差
-- 输出对应的 **时长结果**
+- Enter **Start Time**
+- Enter **End Time**
+- Automatically calculates the time difference
+- Outputs the corresponding **Duration Result**
 
-适合用于：
+Ideal for:
 
-- 记录学习时长 📚
-- 统计工作时间 💼
-- 计算活动持续时间 🎯
-- 日常时间管理 ⌛
+- Tracking study time 📚
+- Logging work hours 💼
+- Calculating activity durations 🎯
+- Daily time management ⌛
 
-## 🛠️ 使用方式
+## 🛠️ Usage
 
-1. 输入开始时间
-2. 输入结束时间
-3. 点击计算 / 运行程序
-4. 查看输出的时长结果
+1. Enter the start time
+2. Enter the end time
+3. Click "Calculate" / Run the program
+4. View the resulting duration
 
-## 🧾 输入示例
-开始时间：09:30
-结束时间：11:45
-## ✅ 输出示例
-时长：2小时15分钟
+## 🧾 Input Example
+Start Time: 09:30
+End Time: 11:45
+## ✅ Output Example
+Duration: 2 hours 15 minutes
 
-## 🚀 项目特点
-- 功能简单，使用直观
-- 适合初学者练手
+## 🚀 Project Highlights
+- Simple functionality, intuitive to use
+- Suitable for beginners to practice their skills
 
-## 📂 项目目标
-通过这个小项目，实现最基础的时间差计算功能，帮助用户快速得到两个时间点之间的持续时长。
+## 📂 Project Goal
+The goal of this small project is to implement basic time difference calculation functionality, helping users quickly determine the duration between two specific points in time.
 
 ## 📜 License
 This project is for learning and personal use.
